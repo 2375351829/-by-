@@ -1,3 +1,8 @@
+"""
+此程序经供参考
+By 凌风逐月工作室
+"""
+
 from tkinter import messagebox
 
 def show_error(message):

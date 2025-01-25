@@ -1,3 +1,8 @@
+"""
+此程序经供参考
+By 凌风逐月工作室
+"""
+
 import tkinter as tk
 from tkinter import ttk
 import psutil

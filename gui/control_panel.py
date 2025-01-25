@@ -1,3 +1,9 @@
+"""
+此程序经供参考
+By 凌风逐月工作室
+"""
+
+
 import tkinter as tk
 from tkinter import ttk, filedialog
 from gui.utils import show_error, show_info, show_warning, confirm_action
@@ -80,11 +86,6 @@ class ControlPanel:
             show_warning("请先选择一个进程")
             return
             
-        item = self.table.tree.item(selected[0])
-        pid = item['values'][4]
-        process_name = item['values'][5]
-        
-        if not confirm_action(f"确定要终止进程 {process_name} (PID: {pid}) 吗？"):
             return
             
         try:
