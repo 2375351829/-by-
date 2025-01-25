@@ -1,3 +1,8 @@
+"""
+此程序经供参考
+By 凌风逐月工作室
+"""
+
 import tkinter as tk
 from tkinter import ttk
 from .table_component import PortTable
@@ -7,7 +12,7 @@ import os
 class MainWindow:
     def __init__(self, root):
         self.root = root
-        self.root.title("端口管理器")
+        self.root.title("端口管理器 - By 凌风逐月工作室")
         
         # 设置窗口图标
         icon_path = os.path.join(os.path.dirname(__file__), "icon.ico")
