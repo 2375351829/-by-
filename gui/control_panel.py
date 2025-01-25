@@ -1,9 +1,3 @@
-"""
-此程序经供参考
-By 凌风逐月工作室
-"""
-
-
 import tkinter as tk
 from tkinter import ttk, filedialog
 from gui.utils import show_error, show_info, show_warning, confirm_action
@@ -86,21 +80,23 @@ class ControlPanel:
             show_warning("请先选择一个进程")
             return
             
-        # 获取选中的进程信息
-        item = selected[0]
-        values = self.table.tree.item(item, 'values')
-        pid = int(values[4])  # PID在第5列
-        process_name = values[5]  # 进程名称在第6列
+        item = self.table.tree.item(selected[0])
+        pid = item['values'][4]
+        process_name = item['values'][5]
         
-        # 确认对话框
         if not confirm_action(f"确定要终止进程 {process_name} (PID: {pid}) 吗？"):
             return
             
         try:
-            # 调用port_manager的kill_process方法
-            self.table.manager.kill_process(pid)
+            import psutil
+            process = psutil.Process(pid)
+            process.terminate()
             show_info(f"已成功终止进程 {process_name} (PID: {pid})")
             self.table.refresh()
+        except psutil.NoSuchProcess:
+            show_error(f"进程 {process_name} (PID: {pid}) 不存在")
+        except psutil.AccessDenied:
+            show_error(f"没有权限终止进程 {process_name} (PID: {pid})")
         except Exception as e:
             show_error(f"终止进程时发生错误: {str(e)}")
         
